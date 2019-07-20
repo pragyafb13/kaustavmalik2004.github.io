@@ -24,148 +24,160 @@ By adding this system the security of our vehicle will be secured at a higher le
 <br>
 The code for the fingerprint part:
 <br>
+  
+<br>
 /*************************************************** 
   This is an example sketch for our optical Fingerprint sensor
 
   Written by KAUSTAV MALIK  
   BSD license, all text above must be included in any redistribution
  ****************************************************/
+  <br>
+  
+<br>
 
 
 #include <Adafruit_Fingerprint.h>
+  <br>
+  
+<br>
 
 // On Leonardo/Micro or others with hardware serial, use those! #0 is green wire, #1 is white
-// uncomment this line:
-// #define mySerial Serial1
+  <br>
+<br>// uncomment this line:
+<br>// #define mySerial Serial1
 
-// For UNO and others without hardware serial, we must use software serial...
-// pin #2 is IN from sensor (YELLOW wire)
-// pin #3 is OUT from arduino  (WHITE wire)
-// comment these two lines if using hardware serial
-#include <SoftwareSerial.h>
-SoftwareSerial mySerial(2, 3);
-//pin #12 is 12v dc motor
-int motor=12;
-Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
-void setup()  
-{
-  
-  pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(motor, OUTPUT);
-  Serial.begin(9600);
-  while (!Serial);  // For Yun/Leo/Micro/Zero/...
-  delay(100);
-  Serial.println("\n\nAdafruit finger detect test");
+  <br>// For UNO and others without hardware serial, we must use software serial...
+<br>// pin #2 is IN from sensor (YELLOW wire)
+<br>// pin #3 is OUT from arduino  (WHITE wire)
+<br>// comment these two lines if using hardware serial
+<br>#include <SoftwareSerial.h>
+<br>SoftwareSerial mySerial(2, 3);
+<br>//pin #12 is 12v dc motor
+<br>int motor=12;
+<br>Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
-  // set the data rate for the sensor serial port
-  finger.begin(57600);
-  
-  if (finger.verifyPassword()) {
-    Serial.println("Found fingerprint sensor!");
-  } else {
-    Serial.println("Did not find fingerprint sensor :(");
-    while (1) { delay(1); }
-  }
-
-  finger.getTemplateCount();
-  Serial.print("Sensor contains "); Serial.print(finger.templateCount); Serial.println(" templates");
-  Serial.println("Waiting for valid finger...");
-}
-
+<br>void setup()  
+<br>{
+<br>  
+<br>  pinMode(LED_BUILTIN, OUTPUT);
+<br>  pinMode(motor, OUTPUT);
+<br>  Serial.begin(9600);
+<br>  while (!Serial);  // For Yun/Leo/Micro/Zero/...
+<br>  delay(100);
+<br>  Serial.println("\n\nAdafruit finger detect test");
+<br>
+<br>  // set the data rate for the sensor serial port
+<br>  finger.begin(57600);
+<br>  
+<br>  if (finger.verifyPassword()) {
+<br>    <br>Serial.println("Found fingerprint sensor!");
+<br>  } <br>else {
+<br>    <br>Serial.println("Did not find fingerprint sensor :(");
+<br>    <br>while (1) { delay(1); }<br><br>
+<br>  }
+<br>
+<br>
+<br>  finger.getTemplateCount();
+<br>  <br>Serial.print("Sensor contains "); Serial.print(finger.templateCount); Serial.println(" templates");
+<br>  Se<br>rial.println("Waiting for valid finger..."<br><br><br><br><br>);
+<br>}
+<br>
 void loop()                     // run over and over again
-{
-  getFingerprintIDez();
-  delay(50);            //don't ned to run this at full speed.
-}
-
-uint8_t getFingerprintID() {
-  uint8_t p = finger.getImage();
-  switch (p) {
-    case FINGERPRINT_OK:
-      Serial.println("Image taken");
-      break;
-    case FINGERPRINT_NOFINGER:
-      Serial.println("No finger detected");
-      return p;
-    case FINGERPRINT_PACKETRECIEVEERR:
-      Serial.println("Communication error");
-      return p;
-    case FINGERPRINT_IMAGEFAIL:
-      Serial.println("Imaging error");
-      return p;
-    default:
-      Serial.println("Unknown error");
-      return p;
-  }
-
-  // OK success!
-
-  p = finger.image2Tz();
-  switch (p) {
-    case FINGERPRINT_OK:
-      Serial.println("Image converted");
-      break;
-    case FINGERPRINT_IMAGEMESS:
-      Serial.println("Image too messy");
-      return p;
-    case FINGERPRINT_PACKETRECIEVEERR:
-      Serial.println("Communication error");
-      return p;
-    case FINGERPRINT_FEATUREFAIL:
-      Serial.println("Could not find fingerprint features");
-      return p;
-    case FINGERPRINT_INVALIDIMAGE:
-      Serial.println("Could not find fingerprint features");
-      return p;
-    default:
-      Serial.println("Unknown error");
-      return p;
-  }
-  
-  // OK converted!
-  p = finger.fingerFastSearch();
-  if (p == FINGERPRINT_OK) {
-    Serial.println("Found a print match!");
-  } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
-    Serial.println("Communication error");
-    return p;
-  } else if (p == FINGERPRINT_NOTFOUND) {
-    Serial.println("Did not find a match");
-    return p;
-  } else {
-    Serial.println("Unknown error");
-    return p;
-  }   
-  
-  // found a match!
-  Serial.print("Found ID #"); Serial.print(finger.fingerID);
-  digitalWrite(LED_BUILTIN, HIGH); 
-  digitalWrite(motor, HIGH); 
-  Serial.print(" with confidence of "); Serial.println(finger.confidence);
-   
-
-  return finger.fingerID;
-}
-
-// returns -1 if failed, otherwise returns ID #
-int getFingerprintIDez() {
-  uint8_t p = finger.getImage();
-  if (p != FINGERPRINT_OK)  return -1;
-
-  p = finger.image2Tz();
-  if (p != FINGERPRINT_OK)  return -1;
-
-  p = finger.fingerFastSearch();
-  if (p != FINGERPRINT_OK)  return -1;
-  
-  // found a match!
-  Serial.print("Found ID #"); Serial.print(finger.fingerID);
-  digitalWrite(LED_BUILTIN, HIGH);  
-  digitalWrite(motor, HIGH);
-  Serial.print(" with confidence of "); Serial.println(finger.confidence);
-  return finger.fingerID; 
-} 
+<br><br><br>  
+<br>{
+<br>  ge<br>tFingerprintIDez();
+<br>  delay(50);            //don't ned to run this at full speed.
+<br>}
+<br>
+<br>uint8_t getFingerprintID() {
+<br>  uint8_t p = finger.getImage();
+<br>  switch (p) {
+<br>    case FINGERPRINT_OK:
+<br>      Serial.println("Image taken");
+<br>      break;
+<br>    case FINGERPRINT_NOFINGER:
+<br>      Serial.println("No finger detected");
+<br>      return p;
+<br>    case FINGERPRINT_PACKETRECIEVEERR:
+<br>      Serial.println("Communication error");
+<br>      return p;
+<br>    case FINGERPRINT_IMAGEFAIL:
+<br>      Serial.println("Imaging error");
+<br>      return p;
+<br>    default:
+<br>      Serial.println("Unknown error");
+<br>      return p;
+<br>  }
+<br>
+<br>  // OK success!
+<br>
+<br>  p = finger.image2Tz();
+<br>  switch (p) {
+<br>    case FINGERPRINT_OK:
+<br>      Serial.println("Image converted");
+<br>      break;
+<br>    case FINGERPRINT_IMAGEMESS:
+<br>      Serial.println("Image too messy");
+<br>      return p;
+<br>    case FINGERPRINT_PACKETRECIEVEERR:
+<br>      Serial.println("Communication error");
+<br>      return p;
+<br>    case FINGERPRINT_FEATUREFAIL:
+<br>      Serial.println("Could not find fingerprint features");
+<br>      return p;
+<br>    case FINGERPRINT_INVALIDIM<br>AGE:
+<br>      Serial.println("Could not find fingerprint features");
+<br>      return p;
+<br>    default:
+<br>      Serial.println("Unknown error");
+<br>      return p;
+<br>  }
+<br>  
+<br>  // OK converted!
+<br>  p = finger.fingerFastSearch();
+<br>  if (p == FINGERPRINT_OK) {
+<br>    Serial.println("Found a print match!");
+<br>  } else if (p == FINGERPRINT_PACKETRECIEVEERR) {
+<br>    Serial.println("Communication error");
+<br>    return p;
+<br>  } else if (p == FINGERPRINT_NOTFOUND) {
+<br>    Serial.println("Did not find a match");
+<br>    return p;
+<br>  } else {
+<br>    Serial.println("Unknown error");
+<br>    return p;
+<br>  }   
+<br>  
+<br>  // found a match!
+<br>  Serial.print("Found ID #"); Serial.print(finger.fingerID);
+<br>  di<br>gitalWrite(LED_BUILTIN, HIGH); 
+<br>  digitalWrite(motor, HIGH); 
+<br>  Serial.print(" with confidence of "); Serial.println(finger.confidence);
+<br>   
+<br>
+<br>  return finger.fingerID;
+<br>}
+<br>
+<br>// returns -1 if failed, otherwise returns ID #
+<br>int getFingerprintIDez() {
+<br>  uint8_t p = finger.getImage();
+<br>  if (p != FINGERPRINT_OK)  return -1;
+<br>
+<br>  p = finger.image2Tz();
+<br>  if (p != FINGERPRINT_OK)  return -1;
+<br>
+<br>  p = finger.fingerFastSearch();
+<br>  if (p != FINGERPRINT_OK)  return -1;
+<br>  
+<br>  // found a match!
+<br>  Serial.print("Found ID #"); Serial.print(finger.fingerID);
+<br>  digitalWrite(LED_BUILTIN, HIGH);  
+<br>  digitalWrite(motor, HIGH);
+<br>  Serial.print(" with confidence of "); Serial.println(finger.confidence);
+<br>  return finger.fingerID; 
+<br>} 
 <br>  
 Link to download the library:
 <br>
