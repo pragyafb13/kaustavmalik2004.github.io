@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>
+INTERFACING MQ-6 WITH ARDUINO  
+</title>
+</head>
+<body>
+<h1><marquee>INTERFACING MQ-6 WITH ARDUINO</marquee>  
+<br>
+<br>/*THIS PROGRAM HAS BEEN WRITTEN BY KAUSTAV MALIK*/
+<br>
+<br>/*========Hardware Related Macros=====================*/
+<br>#define         MQ_PIN                       (0)     //define which analog input channel you are going to use
+<br>#define         RL_VALUE                     (20)    //define the load resistance on the board, in kilo ohms
+<br>#define         RO_CLEAN_AIR_FACTOR          (10)    //RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
+<br>                                                     //which is derived from the chart in datasheet
+<br> 
+<br>/*============Software Related Macros ===============*/
+<br>#define         CALIBARAION_SAMPLE_TIMES     (50)    //define how many samples you are going to take in the calibration phase
+<br>#define         CALIBRATION_SAMPLE_INTERVAL  (500)   //define the time interal(in milisecond) between each samples in the           <br>                                          //cablibration phase
+<br>#define         READ_SAMPLE_INTERVAL         (50)    //define how many samples you are going to take in normal operation
+<br>#define         READ_SAMPLE_TIMES            (5)     //define the time interal(in milisecond) between each samples in 
+<br>                                                     //normal operation
+<br> 
+<br>/*=============Application Related Macros============*/
+<br>#define         GAS_CH4                      (0)
+<br> 
+<br>/*===============Globals=============================*/
+<br>float           LPGCurve[3]  =  {3,   0,  -0.4};    //two points are taken from the curve. 
+<br>                                                    //with these two points, a line is formed which is "approximately equivalent"
+<br>                                                    //to the original curve. 
+<br>                                                    //data format:{ x, y, slope}; point1: (lg1000, lg1), point2: (lg10000, lg0.4) 
+<br>float           CH4Curve[3]  =  {3.3, 0,  -0.38};   //two points are taken from the curve. 
+<br>                                                    //with these two points, a line is formed which is "approximately equivalent" 
+<br>                                                    //to the original curve.
+<br>                                                    //data format:{ x, y, slope}; point1: (lg2000, lg1), point2: (lg5000,  lg0.7) 
+<br>float           Ro           =  10;                 //Ro is initialized to 10 kilo ohms
+<br>
+<br>float sc = Serial.read();
+<br>const int piezo_b2_pin= 10;
+<br>
+<br>#define analogMQ7 A1      // Signal 
+<br> int ledPin = 7;         // Device internal LED      
+<br> const int MQ7sensorValue = analogMQ7;   // value read from the sensor
+<br>
+<br>#include <LiquidCrystal.h>
+<br>
+<br>// initialize the library by associating any needed LCD interface pin
+<br>// with the arduino pin number it is connected to
+<br>const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+<br>LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+<br>void setup() 
+<br>{
+<br>    Serial.println(F("MQ-7 Gas Sensor Flying-Fish started"));
+<br>
+<br>    pinMode(analogMQ7, INPUT);
+<br>    pinMode(ledPin, OUTPUT);
+<br>pinMode(piezo_b2_pin, OUTPUT);
+<br>Serial.begin(9600);
+<br> lcd.begin(16, 2);
+<br>  if (sc==0)
+<br>  {                                                                                              //UART setup, baudrate = 9600bps
+<br>  Serial.print("Calibrating...\n");                
+<br>  Ro = MQCalibration(MQ_PIN);                       //Calibrating the sensor. Please make sure the sensor is in clean air 
+<br>  }                                                   //when you perform the calibration                 
+<br>
+<br>}
+<br>
+<br>void loop() 
+<br>{   
+<br>   Serial.print("CH4::"); 
+<br>   Serial.print(MQGetGasPercentage(MQRead(MQ_PIN)/Ro,GAS_CH4));
+<br>   Serial.print( "ppm" );
+<br>   Serial.print("\n");
+<br>   delay(200);
+<br>   // A) preparation
+<br>    // turn the heater fully on
+<br>    analogWrite(analogMQ7, HIGH); // HIGH = 255
+<br>    // heat for 1 sec
+<br>    delay(1000);
+<br>    // now reducing the heating power: turn the heater to approx 1,4V
+<br>    analogWrite(analogMQ7, 71.4); // 255x1400/5000
+<br>    // heat for 1 sec
+<br>    delay(1000);
+<br>    
+<br>  // B) reading    
+<br>    // CO2 via MQ7: we need to read the sensor at 5V, but must not let it heat up. So hurry!
+<br>    analogWrite(analogMQ7, HIGH); 
+<br>    delay(50); // Getting an analog read apparently takes 100uSec
+<br>    
+<br>    
+<br>  // C) print the results to the serial monitor
+<br>    Serial.print("MQ-7 PPM: ");                       
+<br>    Serial.print(analogMQ7); 
+<br>    Serial.println(); 
+<br>    
+<br>  // D) interpretation
+<br>    // Detecting range: 20ppm-2000ppm carbon monoxide
+<br>    // air quality-cases: < 200 perfect, 200 - 800 normal, > 800 - 1800 high, > 1800 abnormal
+<br>  
+<br>   if ((MQGetGasPercentage(MQRead(MQ_PIN)/Ro,GAS_CH4) > 30)||(analogMQ7 >60))
+<br>   {
+<br>    lcd.clear();
+<br>    while ((MQGetGasPercentage(MQRead(MQ_PIN)/Ro,GAS_CH4) > 30)||(analogMQ7 >60))
+<br>    {
+<br>    
+<br>    digitalWrite(piezo_b2_pin, HIGH);
+<br>    }
+<br>    
+<br>    }
+<br>   
+<br>   if (MQGetGasPercentage(MQRead(MQ_PIN)/Ro,GAS_CH4) == 0)
+<br>   {
+<br>    lcd.clear();
+<br>    digitalWrite(piezo_b2_pin, LOW);
+<br>   }
+<br>}
+<br>float MQResistanceCalculation(int raw_adc)
+<br>{
+<br>  return ( ((float)RL_VALUE*(1023-raw_adc)/raw_adc));
+<br>}
+<br>
+<br>/*===================== MQCalibration ======================
+<br>Input:   mq_pin - analog channel
+<br>Output:  Ro of the sensor
+<br>Remarks: This function assumes that the sensor is in clean air. It use  
+<br>         MQResistanceCalculation to calculates the sensor resistance in clean air 
+<br>         and then divides it with RO_CLEAN_AIR_FACTOR. RO_CLEAN_AIR_FACTOR is abo<br>ut 
+<br>     10, which differs slightly between different sensors<br>.
+<br>=========================================================<br>===*/ 
+<br>float MQCalibration(int mq_pin)
+<br>{
+<br>  int i;
+<br>  float val=0;
+<br> 
+<br>  for (i=0;i<CALIBARAION_SAMPLE_TIMES;i++)
+<br>  {            //take multiple samples
+<br>    val += MQResistanceCalculation(analogRead(mq_pin));
+<br>    delay(CALIBRATION_SAMPLE_INTERVAL);
+<br>  }
+<br>  val = val/CALIBARAION_SAMPLE_TIMES;                   //calculate the average value
+<br> 
+<br>  val = val/RO_CLEAN_AIR_FACTOR;                        //divided by RO_CLEAN_AIR_FACTOR yields the Ro 
+<br>                                                        //according to the chart in the datasheet 
+<br> 
+<br>  return val; 
+<br>}
+<br>/*==================== MQRead ===============================
+<br>Input:   mq_pin - analog channel
+<br>Output:  Rs of the sensor
+<br>Remarks: This function use MQResistanceCalculation to caculate the sensor resistenc (Rs).
+<br>         The Rs changes as the sensor is in the different consentration of the target
+<br>         gas. The sample times and the time interval between samples could be configured
+<br>         by changing the definition of the macros.
+<br>============================================================*/ 
+<br>float MQRead(int mq_pin)
+<br>{
+<br>  int i;
+<br>  float rs=0;
+<br> 
+<br>  for (i=0;i<READ_SAMPLE_TIMES;i++)
+<br>  {
+<br>    rs += MQResistanceCalculation(analogRead(mq_pin));
+<br>    delay(READ_SAMPLE_INTERVAL);
+<br>  }
+<br> 
+<br>  rs = rs/READ_SAMPLE_TIMES;
+<br> 
+<br>  return rs;  
+<br>}
+<br> /*=======================  MQGetGasPercentage ==================
+<br>Input:   rs_ro_ratio - Rs divided by Ro
+<br>         gas_id      - target gas type
+<br>Output:  ppm of the target gas
+<br>Remarks: This function passes different curves to the MQGetPercentage function which 
+<br>         calculates the ppm (parts per million) of the target gas.
+<br>===============================================================*/ 
+<br>int MQGetGasPercentage(float rs_ro_ratio, int gas_id)
+<br>{
+<br> if ( gas_id == GAS_CH4 )
+<br>  {
+<br>      return MQGetPercentage(rs_ro_ratio,CH4Curve);
+<br>  }    
+<br> 
+<br>  return 0;
+<br>}
+<br> /*========================  MQGetPercentage ===================
+<br>Input:   rs_ro_ratio - Rs divided by Ro
+<br>         pcurve      - pointer to the curve of the target gas
+<br>Output:  ppm of the target gas
+<br>Remarks: By using the slope and a point of the line. The x(logarithmic value of ppm) 
+<br>         of the line could be derived if y(rs_ro_ratio) is provided. As it is a 
+<br>         logarithmic coordinate, power of 10 is used to convert the result to non-logarithmic 
+<br>         value.
+<br>===============================================================*/ 
+int  MQGetPercentage(float rs_ro_ratio, float *pcurve)
+<br>{
+<br>  return (pow(10, (((log(rs_ro_ratio)-pcurve[1])/pcurve[2]) + pcurve[0])));
+<br>}
+<br>
+</body>
+</html>
