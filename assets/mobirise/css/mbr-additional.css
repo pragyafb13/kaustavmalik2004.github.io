@@ -1896,6 +1896,192 @@ section.lazy-placeholder:after {
   transition: 0.2s background ease-in-out;
   background: linear-gradient(to left, #554346, #45505b) !important;
 }
+.cid-rU39NLFzNc {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background-color: #ffffff;
+}
+.cid-rU39NLFzNc .item {
+  padding-bottom: 2rem;
+}
+.cid-rU39NLFzNc .carousel-control,
+.cid-rU39NLFzNc .close {
+  background: #1b1b1b;
+}
+.cid-rU39NLFzNc .carousel-control-prev {
+  margin-left: 2.5rem;
+}
+.cid-rU39NLFzNc .carousel-control-next {
+  margin-right: 2.5rem;
+}
+.cid-rU39NLFzNc .close {
+  position: fixed;
+  opacity: .5;
+  font-size: 35px;
+  font-weight: 300;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  color: #fff;
+  top: 2.5rem;
+  right: 2.5rem;
+  line-height: 70px;
+  border: none;
+  text-align: center;
+  text-shadow: none;
+  z-index: 5;
+  -webkit-transition: opacity .3s ease;
+  -moz-transition: opacity .3s ease;
+  -o-transition: opacity .3s ease;
+  transition: opacity .3s ease;
+  font-family: 'MobiriseIcons';
+}
+.cid-rU39NLFzNc .close::before {
+  content: '\e91a';
+}
+.cid-rU39NLFzNc .close:hover {
+  opacity: 1;
+  background: #000;
+  color: #fff;
+}
+.cid-rU39NLFzNc .carousel-control {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  top: 50%;
+  margin-top: -35px;
+  line-height: 70px;
+  border-radius: 50%;
+  font-size: 35px;
+  border: 0;
+  opacity: .5;
+  text-shadow: none;
+  z-index: 5;
+  color: #fff;
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  -o-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+}
+.cid-rU39NLFzNc .carousel-inner > .active {
+  display: block;
+}
+.cid-rU39NLFzNc .carousel-control.left {
+  left: 0;
+  margin-left: 2.5rem;
+}
+.cid-rU39NLFzNc .carousel-control.right {
+  right: 0;
+  margin-right: 2.5rem;
+}
+.cid-rU39NLFzNc .carousel-control .icon-next,
+.cid-rU39NLFzNc .carousel-control .icon-prev {
+  margin-top: -18px;
+  font-size: 40px;
+  line-height: 27px;
+}
+.cid-rU39NLFzNc .carousel-control:hover {
+  background: #1b1b1b;
+  color: #fff;
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .cid-rU39NLFzNc .carousel-control,
+  .cid-rU39NLFzNc .carousel-indicators,
+  .cid-rU39NLFzNc .modal .close {
+    position: fixed;
+  }
+}
+@media (max-width: 767px) {
+  .cid-rU39NLFzNc .mbr-slider .carousel-control {
+    top: auto;
+    bottom: 20px;
+  }
+  .cid-rU39NLFzNc .mbr-slider > .container .carousel-control {
+    margin-bottom: 0;
+  }
+}
+.cid-rU39NLFzNc .carousel-indicators {
+  bottom: 0;
+  margin-bottom: 3px;
+}
+@media (max-width: 991px) {
+  .cid-rU39NLFzNc .carousel-indicators {
+    margin-bottom: 3.625rem !important;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+@media (max-width: 767px) {
+  .cid-rU39NLFzNc .carousel-indicators {
+    display: none;
+  }
+}
+.cid-rU39NLFzNc .carousel-indicators .active,
+.cid-rU39NLFzNc .carousel-indicators li {
+  width: 7px;
+  height: 7px;
+  margin: 3px;
+  background: #1b1b1b;
+  opacity: .5;
+  border: 4px solid #1b1b1b;
+}
+.cid-rU39NLFzNc .carousel-indicators .active {
+  background: #fff;
+}
+.cid-rU39NLFzNc .carousel-indicators li {
+  max-width: 15px;
+  max-height: 15px;
+  border-radius: 50%;
+}
+.cid-rU39NLFzNc .modal {
+  padding-left: 0 !important;
+  position: fixed;
+  overflow: hidden;
+  padding-right: 0 !important;
+}
+.cid-rU39NLFzNc .modal-dialog {
+  margin: 0 auto;
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.cid-rU39NLFzNc .modal-content {
+  border-radius: 0;
+  border: none;
+  background: transparent;
+}
+.cid-rU39NLFzNc .modal-body {
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.cid-rU39NLFzNc .modal-body img {
+  width: 100%;
+  object-fit: contain;
+  max-height: calc(98.25vh);
+}
+.cid-rU39NLFzNc .carousel {
+  width: 100%;
+}
+.cid-rU39NLFzNc .modal-dialog .carousel-inner {
+  height: auto;
+}
+.cid-rU39NLFzNc .modal-backdrop.in {
+  opacity: .8;
+}
+.cid-rU39NLFzNc .modal.fade .modal-dialog {
+  -webkit-transition: margin-top 0.3s ease-out;
+  -moz-transition: margin-top 0.3s ease-out;
+  -o-transition: margin-top 0.3s ease-out;
+  transition: margin-top 0.3s ease-out;
+}
+.cid-rU39NLFzNc .modal.fade .modal-dialog,
+.cid-rU39NLFzNc .modal.in .modal-dialog {
+  -webkit-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+}
 .cid-rTQNJM2OsI {
   padding-top: 90px;
   padding-bottom: 90px;
