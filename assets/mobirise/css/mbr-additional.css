@@ -1100,7 +1100,7 @@ section.lazy-placeholder:after {
   color: #c1c1c1 !important;
 }
 .cid-rTNisbfU32 {
-  background-image: url("../../../assets/images/background4.jpg");
+  background-image: url("../../../assets/images/dt-200221-covid-19-coronavirus-800x450-800x450.jpeg");
 }
 .cid-rTNisbfU32 H1 {
   color: #ff3366;
@@ -1239,6 +1239,17 @@ section.lazy-placeholder:after {
 }
 .cid-rTWXl96hbV P {
   color: #767676;
+}
+.cid-rU3iBZ7Dwg {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background-color: #efefef;
+}
+.cid-rU3iBZ7Dwg P {
+  color: #767676;
+}
+.cid-rU3iBZ7Dwg H1 {
+  color: #0bba19;
 }
 .cid-rTQKy3aayk {
   padding-top: 90px;
@@ -1546,16 +1557,84 @@ section.lazy-placeholder:after {
   -o-transform: none;
   transform: none;
 }
-.cid-rU3iBZ7Dwg {
+.cid-rU8Z7tiqj0 {
   padding-top: 90px;
   padding-bottom: 90px;
-  background-color: #efefef;
+  background-color: #f9f9f9;
 }
-.cid-rU3iBZ7Dwg P {
+.cid-rU8Z7tiqj0 .mbr-section-subtitle {
   color: #767676;
 }
-.cid-rU3iBZ7Dwg H1 {
-  color: #0bba19;
+.cid-rU8Z7tiqj0 .container-table {
+  margin: 0 auto;
+}
+.cid-rU8Z7tiqj0 .scroll {
+  overflow-x: auto;
+  padding: 0;
+}
+.cid-rU8Z7tiqj0 .dataTables_wrapper {
+  display: block;
+}
+.cid-rU8Z7tiqj0 .dataTables_wrapper .search {
+  margin-bottom: .5rem;
+}
+.cid-rU8Z7tiqj0 .dataTables_wrapper .table {
+  overflow-x: auto;
+}
+.cid-rU8Z7tiqj0 table {
+  width: 100% !important;
+  margin-top: 6px;
+  border: 1px solid #cccccc;
+  margin-bottom: 0;
+}
+.cid-rU8Z7tiqj0 table th {
+  border-top: none;
+  transition: all .2s;
+  border-bottom: none;
+}
+.cid-rU8Z7tiqj0 table th:hover {
+  background: #cccccc;
+  color: #000000;
+}
+.cid-rU8Z7tiqj0 table td {
+  border-top: 1px solid #cccccc;
+}
+.cid-rU8Z7tiqj0 table.table {
+  background: #ffffff;
+}
+.cid-rU8Z7tiqj0 .dataTables_filter {
+  text-align: right;
+  margin-bottom: .5rem;
+}
+.cid-rU8Z7tiqj0 .dataTables_filter label {
+  display: inline;
+  white-space: normal !important;
+}
+.cid-rU8Z7tiqj0 .dataTables_filter input {
+  display: inline;
+  width: auto;
+  margin-left: .5rem;
+  border-radius: 100px;
+  padding-left: 1rem;
+}
+.cid-rU8Z7tiqj0 .dataTables_info {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  white-space: normal !important;
+}
+@media (max-width: 992px) {
+  .cid-rU8Z7tiqj0 .dataTables_filter {
+    text-align: center;
+  }
+}
+@media (max-width: 350px) {
+  .cid-rU8Z7tiqj0 .dataTables_filter {
+    text-align: center;
+  }
+  .cid-rU8Z7tiqj0 .dataTables_filter input {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
 }
 .cid-rTQNJM2OsI {
   padding-top: 90px;
