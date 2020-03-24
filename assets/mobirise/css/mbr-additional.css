@@ -1099,6 +1099,14 @@ section.lazy-placeholder:after {
 .cid-qTkzRZLJNu .dropdown-item:hover {
   color: #c1c1c1 !important;
 }
+.cid-rUaj5KIzcg {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background-color: #ff3333;
+}
+.cid-rUaj5KIzcg P {
+  color: #767676;
+}
 .cid-rTNisbfU32 {
   background-image: url("../../../assets/images/dt-200221-covid-19-coronavirus-800x450-800x450.jpeg");
 }
@@ -1243,7 +1251,7 @@ section.lazy-placeholder:after {
 .cid-rU3iBZ7Dwg {
   padding-top: 90px;
   padding-bottom: 90px;
-  background-color: #efefef;
+  background-color: #c0fac4;
 }
 .cid-rU3iBZ7Dwg P {
   color: #767676;
@@ -1560,7 +1568,7 @@ section.lazy-placeholder:after {
 .cid-rU8Z7tiqj0 {
   padding-top: 90px;
   padding-bottom: 90px;
-  background-color: #f9f9f9;
+  background-color: #f0dee2;
 }
 .cid-rU8Z7tiqj0 .mbr-section-subtitle {
   color: #767676;
@@ -1600,7 +1608,7 @@ section.lazy-placeholder:after {
   border-top: 1px solid #cccccc;
 }
 .cid-rU8Z7tiqj0 table.table {
-  background: #ffffff;
+  background: #f79db3;
 }
 .cid-rU8Z7tiqj0 .dataTables_filter {
   text-align: right;
@@ -1696,6 +1704,51 @@ section.lazy-placeholder:after {
 @media (max-width: 767px) {
   .cid-rTQNJM2OsI .btn {
     font-size: 20px !important;
+  }
+}
+.cid-rU9wkO8MPG {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background-color: #ffffff;
+}
+.cid-rU9wkO8MPG .mbr-section-subtitle {
+  color: #767676;
+}
+.cid-rU9wkO8MPG .formoid {
+  margin: auto;
+}
+.cid-rU9wkO8MPG .form-control {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+.cid-rU9wkO8MPG .input-group-btn .btn {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin: 0 !important;
+}
+.cid-rU9wkO8MPG a:not([href]):not([tabindex]) {
+  color: #fff;
+}
+.cid-rU9wkO8MPG a.btn-white:not([href]):not([tabindex]) {
+  color: #333;
+}
+@media (max-width: 768px) {
+  .cid-rU9wkO8MPG .mbr-form .row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  .cid-rU9wkO8MPG .form-group,
+  .cid-rU9wkO8MPG .input-group-btn,
+  .cid-rU9wkO8MPG .input-group-btn .btn {
+    max-width: 300px;
+    width: 100%;
+  }
+}
+@media (min-width: 769px) {
+  .cid-rU9wkO8MPG .mbr-form .row > * {
+    padding: 0 0.5rem;
   }
 }
 .cid-rTQNWbiGcs {
