@@ -1706,51 +1706,6 @@ section.lazy-placeholder:after {
     font-size: 20px !important;
   }
 }
-.cid-rU9wkO8MPG {
-  padding-top: 90px;
-  padding-bottom: 90px;
-  background-color: #ffffff;
-}
-.cid-rU9wkO8MPG .mbr-section-subtitle {
-  color: #767676;
-}
-.cid-rU9wkO8MPG .formoid {
-  margin: auto;
-}
-.cid-rU9wkO8MPG .form-control {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-.cid-rU9wkO8MPG .input-group-btn .btn {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin: 0 !important;
-}
-.cid-rU9wkO8MPG a:not([href]):not([tabindex]) {
-  color: #fff;
-}
-.cid-rU9wkO8MPG a.btn-white:not([href]):not([tabindex]) {
-  color: #333;
-}
-@media (max-width: 768px) {
-  .cid-rU9wkO8MPG .mbr-form .row {
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    -webkit-align-items: center;
-    align-items: center;
-  }
-  .cid-rU9wkO8MPG .form-group,
-  .cid-rU9wkO8MPG .input-group-btn,
-  .cid-rU9wkO8MPG .input-group-btn .btn {
-    max-width: 300px;
-    width: 100%;
-  }
-}
-@media (min-width: 769px) {
-  .cid-rU9wkO8MPG .mbr-form .row > * {
-    padding: 0 0.5rem;
-  }
-}
 .cid-rTQNWbiGcs {
   padding-top: 45px;
   padding-bottom: 45px;
