@@ -48,7 +48,7 @@
     "COVID-19.html": {
       "settings": {
         "meta_descr": "Please visit this site, as this is a pathway to all the main ineternational and Indian sites related to COVID-19. It also give you brief ideas about the precautions and COVID-19.",
-        "title": "COVID-19 | India",
+        "title": "COVID-19 Guide | India",
         "order": 4,
         "meta_image": "@PROJECT_PATH@/assets/images/coronavirus-structure1-1-21-21-1524x720.png"
       },
