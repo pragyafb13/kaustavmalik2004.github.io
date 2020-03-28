@@ -48,7 +48,7 @@
     "COVID-19.html": {
       "settings": {
         "meta_descr": "Web Page Generator Description",
-        "title": "COVID-19",
+        "title": "COVID-19 | India",
         "order": 4,
         "meta_image": "@PROJECT_PATH@/assets/images/coronavirus-structure1-1-21-21-1524x720.png"
       },
