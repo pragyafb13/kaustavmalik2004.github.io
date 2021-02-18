@@ -42,7 +42,13 @@
     "versionFirst": "4.7.6",
     "uniqCompNum": 90,
     "versionPublish": "4.11.4",
-    "screenshot": "screenshot.png"
+    "screenshot": "screenshot.png",
+    "favicon": "",
+    "": "on",
+    "robotsSwitcher": false,
+    "sitemapSwitcher": false,
+    "sitemapSwitcherAuto": false,
+    "siteUrl": "undefined"
   },
   "pages": {
     "COVID-19.html": {
@@ -2318,10 +2324,10 @@
     },
     "index.html": {
       "settings": {
-        "meta_descr": "This the portfolio of Kaustav Malik. Hrer you will find many interesting thing about. You will get to know who I am, what are my achivemennts,my likes and dislikes, etc.",
-        "title": "MY PORTFOLIO",
+        "meta_descr": "This is the portfolio of Kaustav Malik. Here you will find many interesting thing about me. You will get to know who I am, what are my achivemennts,my likes and dislikes, etc.",
+        "title": "Kaustav Malik",
         "order": 1,
-        "meta_image": "@PROJECT_PATH@/assets/images/point%20blur_oct062019-185515-1080x1047.jpg"
+        "meta_image": "@PROJECT_PATH@/assets/images/img-9548-2000x3000.jpg"
       },
       "components": [
         {
